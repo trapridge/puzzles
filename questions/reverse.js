@@ -1,4 +1,4 @@
-function reverse(arr) {
+module.exports = function reverse(arr) {
   'use strict';
 
   let i = 0, 
