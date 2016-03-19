@@ -18,7 +18,7 @@ class SinglyLinkedList {
     });
   }
 
-  insert(data, index) {
+  insert(data) {
     // empty list
     if (this.head === null) {
       this.head = {
@@ -27,7 +27,7 @@ class SinglyLinkedList {
       };
     }
     // insert last
-    else if (index === undefined) {
+    else {
       let current = this.head;
       while (true) {
         if (current.nextNode === null) {
@@ -42,16 +42,58 @@ class SinglyLinkedList {
         }
       }
     }
-    else {
-      throw {
-        name: 'Error',
-        message: 'Unimplemented'
-      }
-    }
   }
 
-  delete(index) {
+  insertAt(data, index) {
+    if(this.head === null && index === 0) return this.insert(data);
 
+    let current = this.head, previous = this.head, counter = 0;
+    while (true) {
+      if (current === null) break;
+      if (counter === index) {
+        let newNode = {
+          data,
+          nextNode: current
+        };
+        if(counter > 0) {
+          previous.nextNode = newNode;
+        }
+        else {
+          this.head = newNode;
+        }
+        return;
+      }
+      previous = current;
+      current = current.nextNode;
+      counter++;
+    }
+    throw {
+      name: 'Error',
+      message: `Index ${index} out of bounds`
+    };
+  }
+
+  deleteAt(index) {
+    let current = this.head, previous = this.head, counter = 0;
+    while (true) {
+      if (current === null) break;
+      if (counter === index) {
+        if(counter > 0) {
+          previous.nextNode = current.nextNode;
+        }
+        else {
+          this.head = current.nextNode;
+        }
+        return current.data;
+      }
+      previous = current;
+      current = current.nextNode;
+      counter++;
+    }
+    throw {
+      name: 'Error',
+      message: `Index ${index} out of bounds`
+    };
   }
 
   get(index) {
