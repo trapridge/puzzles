@@ -3,8 +3,8 @@
  Singly linked list of node objects like:
 
  {
-   data: 'data',
-   next: nextNode
+   data: [data],
+   next: [reference to next node in list]
  }
 
 */
@@ -42,6 +42,12 @@ class SinglyLinkedList {
         }
       }
     }
+    else {
+      throw {
+        name: 'Error',
+        message: 'Unimplemented'
+      }
+    }
   }
 
   delete(index) {
@@ -49,25 +55,36 @@ class SinglyLinkedList {
   }
 
   get(index) {
+    let current = this.head, counter = 0;
+    while (true) {
+      if (current === null) break;
+      if (counter === index) return current.data;
+      current = current.nextNode;
+      counter++;
+    }
+    throw {
+      name: 'Error',
+      message: `Invalid index ${index}`
+    };
+  }
 
+  length() {
+    let current = this.head, counter = 0;
+    while (true) {
+      if (current === null) return counter;
+      current = current.nextNode;
+      counter++;
+    }
   }
 
   toString() {
-    let current = this.head, results = [];
+    const results = [];
+    let current = this.head;
 
     while (true) {
-      if(current !== null) {
-        results.push(current.data.toString());
-      }
-      else {
-        break;
-      }
-      if (current.nextNode === null) {
-        break;
-      }
-      else {
-        current = current.nextNode;
-      }
+      if(current === null) break;
+      else results.push(current.data.toString());
+      current = current.nextNode;
     }
     return results.join(',');
   }
