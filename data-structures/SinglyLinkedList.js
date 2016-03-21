@@ -10,6 +10,7 @@
 */
 
 'use strict';
+
 class SinglyLinkedList {
   constructor() {
     this.head = null;
