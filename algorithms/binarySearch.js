@@ -23,34 +23,34 @@
 // O(logN)
 function binSearchItrAnyIndexOf(sortedArr, needle) {
   let low = 0, 
-      high = sortedArr.length - 1;
+      high = sortedArr.length - 1
 
-  for(low <= high) {
+  while(low <= high) {
     let mid = Math.floor((low + high) / 2),
-        candidate = sortedArr[mid];
+        candidate = sortedArr[mid]
 
-    if(candidate === needle) return mid;
-    else if(candidate < needle) low = mid + 1;
-    else high = mid - 1;
+    if(candidate === needle) return mid
+    else if(candidate < needle) low = mid + 1
+    else high = mid - 1
   }
-  return -1;
+  return -1
 }
 
 // O(logN)
 function binSearchRecAnyIndexOf(sortedArr, high, low, needle) {
-  if(high < low) return -1;
+  if(high < low) return -1
 
   let mid = Math.floor((low + high) / 2),
-      candidate = sortedArr[mid];
+      candidate = sortedArr[mid]
 
   if(candidate === needle) {
-    return mid; 
+    return mid
   }
   else if(candidate < needle) {
-    return binSearchRecAnyIndexOf(sortedArr, high, mid + 1, needle);
+    return binSearchRecAnyIndexOf(sortedArr, high, mid + 1, needle)
   }
   else {
-    return binSearchRecAnyIndexOf(sortedArr, mid - 1, low, needle);
+    return binSearchRecAnyIndexOf(sortedArr, mid - 1, low, needle)
   }
   
 }

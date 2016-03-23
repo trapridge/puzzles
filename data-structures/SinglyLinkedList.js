@@ -9,14 +9,14 @@
 
 */
 
-'use strict';
+'use strict'
 
 class SinglyLinkedList {
   constructor() {
     this.head = null;
     [].slice.call(arguments).forEach(item => {
-      this.insert(item);
-    });
+      this.insert(item)
+    })
   }
 
   insert(data) {
@@ -25,112 +25,112 @@ class SinglyLinkedList {
       this.head = {
         data,
         nextNode: null
-      };
+      }
     }
     // insert last
     else {
-      let current = this.head;
+      let current = this.head
       while (true) {
         if (current.nextNode === null) {
           current.nextNode = {
             data,
             nextNode: null
-          };
-          break;
+          }
+          break
         }
         else {
-          current = current.nextNode;
+          current = current.nextNode
         }
       }
     }
   }
 
   insertAt(data, index) {
-    if(this.head === null && index === 0) return this.insert(data);
+    if(this.head === null && index === 0) return this.insert(data)
 
-    let current = this.head, previous = this.head, counter = 0;
+    let current = this.head, previous = this.head, counter = 0
     while (true) {
-      if (current === null) break;
+      if (current === null) break
       if (counter === index) {
         let newNode = {
           data,
           nextNode: current
-        };
+        }
         if(counter > 0) {
-          previous.nextNode = newNode;
+          previous.nextNode = newNode
         }
         else {
-          this.head = newNode;
+          this.head = newNode
         }
-        return;
+        return
       }
-      previous = current;
-      current = current.nextNode;
-      counter++;
+      previous = current
+      current = current.nextNode
+      counter++
     }
     throw {
       name: 'Error',
       message: `Index ${index} out of bounds`
-    };
+    }
   }
 
   deleteAt(index) {
-    let current = this.head, previous = this.head, counter = 0;
+    let current = this.head, previous = this.head, counter = 0
     while (true) {
-      if (current === null) break;
+      if (current === null) break
       if (counter === index) {
         if(counter > 0) {
-          previous.nextNode = current.nextNode;
+          previous.nextNode = current.nextNode
         }
         else {
-          this.head = current.nextNode;
+          this.head = current.nextNode
         }
-        return current.data;
+        return current.data
       }
-      previous = current;
-      current = current.nextNode;
-      counter++;
+      previous = current
+      current = current.nextNode
+      counter++
     }
     throw {
       name: 'Error',
       message: `Index ${index} out of bounds`
-    };
+    }
   }
 
   get(index) {
-    let current = this.head, counter = 0;
+    let current = this.head, counter = 0
     while (true) {
-      if (current === null) break;
-      if (counter === index) return current.data;
-      current = current.nextNode;
-      counter++;
+      if (current === null) break
+      if (counter === index) return current.data
+      current = current.nextNode
+      counter++
     }
     throw {
       name: 'Error',
       message: `Invalid index ${index}`
-    };
+    }
   }
 
   length() {
-    let current = this.head, counter = 0;
+    let current = this.head, counter = 0
     while (true) {
-      if (current === null) return counter;
-      current = current.nextNode;
-      counter++;
+      if (current === null) return counter
+      current = current.nextNode
+      counter++
     }
   }
 
   toString() {
-    const results = [];
-    let current = this.head;
+    const results = []
+    let current = this.head
 
     while (true) {
-      if(current === null) break;
-      else results.push(current.data.toString());
-      current = current.nextNode;
+      if(current === null) break
+      else results.push(current.data.toString())
+      current = current.nextNode
     }
-    return results.join(',');
+    return results.join(',')
   }
 }
 
-module.exports = SinglyLinkedList;
+module.exports = SinglyLinkedList

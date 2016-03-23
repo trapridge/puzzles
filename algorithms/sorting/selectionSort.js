@@ -20,19 +20,19 @@
 
 function selectionSort(arr, isFirstCb) {
   for(let i = 0; i < arr.length-2; i++) {
-    let minIndex = i;
+    let minIndex = i
     for(let j = i+1; j < arr.length-1; j++) {
       // A[j] < A[minIndex]
       if(cb(A[j], A[minIndex])) {
-        minIndex = j;  
+        minIndex = j
       } 
     }
     if(minIndex > i) {
-      let temp = A[i];
-      A[i] = A[minIndex];
-      A[minIndex] = temp;  
+      let temp = A[i]
+      A[i] = A[minIndex]
+      A[minIndex] = temp
     }
-    console.log(arr);
+    console.log(arr)
   }
 }
 
