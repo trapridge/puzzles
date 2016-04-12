@@ -1,9 +1,9 @@
-ddescribe('', () => {
+describe('parseArithmeticStingRecDesc', () => {
   'use strict'
 
   const parse = require('./parseArithmeticStingRecDesc')
-
-  it('', () => {
+  
+  it('should parse arithmetic strings', () => {
     expect(parse('2*3+4*5')).toEqual(26)
     expect(parse('2*3+4*5*2')).toEqual(46)
     expect(parse('2*(3+4)')).toEqual(14)
