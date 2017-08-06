@@ -31,16 +31,16 @@ describe('ADS: SinglyLinkedList', () => {
 
   describe('length()', () => {
     it('should return correct length', () => {
-      expect(list.length()).toEqual(3)
+      expect(list.length).toEqual(3)
 
       list = new LinkedList()
-      expect(list.length()).toEqual(0)
+      expect(list.length).toEqual(0)
 
       list = new LinkedList('giraffe')
-      expect(list.length()).toEqual(1)
+      expect(list.length).toEqual(1)
 
       list = new LinkedList('1', 2, {}, [], new Error())
-      expect(list.length()).toEqual(5)
+      expect(list.length).toEqual(5)
     })
   })
 
@@ -48,19 +48,19 @@ describe('ADS: SinglyLinkedList', () => {
     it('should add items to the end of the list', () => {
       list = new LinkedList()
       list.insert(4)
-      expect(list.length()).toEqual(1)
+      expect(list.length).toEqual(1)
 
       list = new LinkedList(1)
       list.insert(4)
-      expect(list.length()).toEqual(2)
+      expect(list.length).toEqual(2)
 
       list = new LinkedList(1)
       list.insert(4)
-      expect(list.length()).toEqual(2)
+      expect(list.length).toEqual(2)
 
       list = new LinkedList(1,2,3,4,5,6)
       list.insert(4) // extra params ignored
-      expect(list.length()).toEqual(7)
+      expect(list.length).toEqual(7)
     })
 
   })
@@ -77,7 +77,12 @@ describe('ADS: SinglyLinkedList', () => {
       list = new LinkedList(...input)
       list.insertAt('jep', 2)
       expect(list.toString()).toEqual(['yy', 'kaa', 'jep', 'koo'].join(','))
+
+      list = new LinkedList()
+      list.insertAt('jep', 0)
+      expect(list.toString()).toEqual(['jep'].join(','))
     })
+
 
     it('should handle attempt to insert at non-proper index', () => {
       expect(() => list.insertAt('jep', 3)).toThrow()

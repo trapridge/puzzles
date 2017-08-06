@@ -12,23 +12,21 @@
 'use strict'
 
 class SinglyLinkedList {
-  constructor() {
+  constructor(...params) {
     this.head = null;
-    [].slice.call(arguments).forEach(item => {
+    params.forEach(item => {
       this.insert(item)
     })
   }
 
   insert(data) {
-    // empty list
-    if (this.head === null) {
+    if (this.head === null) { // empty list 
       this.head = {
         data,
         nextNode: null
       }
     }
-    // insert last
-    else {
+    else { // insert last
       let current = this.head
       while (true) {
         if (current.nextNode === null) {
@@ -56,11 +54,11 @@ class SinglyLinkedList {
           data,
           nextNode: current
         }
-        if(counter > 0) {
-          previous.nextNode = newNode
+        if(counter === 0) {
+          this.head = newNode
         }
         else {
-          this.head = newNode
+          previous.nextNode = newNode
         }
         return
       }
@@ -79,11 +77,11 @@ class SinglyLinkedList {
     while (true) {
       if (current === null) break
       if (counter === index) {
-        if(counter > 0) {
-          previous.nextNode = current.nextNode
+        if (counter === 0) {
+          this.head = current.nextNode
         }
         else {
-          this.head = current.nextNode
+          previous.nextNode = current.nextNode
         }
         return current.data
       }
@@ -111,7 +109,7 @@ class SinglyLinkedList {
     }
   }
 
-  length() {
+  get length() {
     let current = this.head, counter = 0
     while (true) {
       if (current === null) return counter
@@ -125,7 +123,7 @@ class SinglyLinkedList {
     let current = this.head
 
     while (true) {
-      if(current === null) break
+      if (current === null) break
       else results.push(current.data.toString())
       current = current.nextNode
     }
